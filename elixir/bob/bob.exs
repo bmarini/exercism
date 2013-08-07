@@ -1,8 +1,8 @@
 defmodule Teenager do
   defmodule Statement do
-    def nothing?(statement) do
-      statement == nil || String.strip(statement) == ""
-    end
+    def nothing?(nil), do: true
+    def nothing?(""), do: true
+    def nothing?(_), do: false
 
     def yelling?(statement) do
       String.upcase(statement) == statement

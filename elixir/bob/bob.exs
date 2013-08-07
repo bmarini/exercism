@@ -9,7 +9,7 @@ defmodule Teenager do
     end
 
     def question?(statement) do
-      String.at(statement, -1) == "?"
+      String.last(statement) == "?"
     end
   end
 

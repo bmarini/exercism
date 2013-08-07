@@ -1,18 +1,19 @@
-defmodule Teenager do
-  defmodule Statement do
-    def nothing?(nil), do: true
-    def nothing?(""), do: true
-    def nothing?(_), do: false
-
-    def yelling?(statement) do
-      String.upcase(statement) == statement
-    end
-
-    def question?(statement) do
-      String.ends_with?(statement, "?")
-    end
+defmodule Statement do
+  def nothing?(nil), do: true
+  def nothing?(statement) do
+    String.strip(statement) == ""
   end
 
+  def yelling?(statement) do
+    String.upcase(statement) == statement
+  end
+
+  def question?(statement) do
+    String.ends_with?(statement, "?")
+  end
+end
+
+defmodule Teenager do
   def hey(statement) do
     cond do
       Statement.nothing?(statement) -> "Fine. Be that way!"

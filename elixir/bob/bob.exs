@@ -14,11 +14,13 @@ defmodule Statement do
 end
 
 defmodule Teenager do
+  import Statement
+
   def hey(statement) do
     cond do
-      Statement.nothing?(statement) -> "Fine. Be that way!"
-      Statement.yelling?(statement) -> "Woah, chill out!"
-      Statement.question?(statement) -> "Sure."
+      nothing?(statement)  -> "Fine. Be that way!"
+      yelling?(statement)  -> "Woah, chill out!"
+      question?(statement) -> "Sure."
       true -> "Whatever."
     end
   end

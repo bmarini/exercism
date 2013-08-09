@@ -1,25 +1,20 @@
 defmodule Words do
-  import String, only: [ downcase: 1, split: 2 ]
-  import Regex, only: [ replace: 3 ]
+  import String, only: [ downcase: 1 ]
+  import Regex, only: [ scan: 2 ]
 
   def count(phrase) do
     phrase
     |> downcase
-    |> remove_punctuation
     |> to_word_list
     |> _count( HashDict.new )
   end
 
-  defp remove_punctuation(phrase) do
-    replace( %r/[^a-z0-9\s]/, phrase, "" )
-  end
-
   defp to_word_list(phrase) do
-    split( phrase, %r/\s+/ )
+    scan( %r/\w+/, phrase )
   end
 
   defp _count( [ word | rest ], hash ) do
-    _count( rest, HashDict.update( hash, word, 1, fn(c) -> c + 1 end ) )
+    _count( rest, HashDict.update( hash, word, 1, &1 + 1 ) )
   end
 
   defp _count( [], hash ) do
